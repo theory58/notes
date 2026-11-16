@@ -103,10 +103,10 @@ export function NotesWorkspace({
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
         <div className="space-y-1.5 max-w-2xl">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 text-balance">
-            Hapi.js Notes API siap deploy di Vercel
+            Notes Theory
           </h1>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-            Seluruh request CRUD ke <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">/notes</code> dijalankan langsung oleh Hapi.js melalui adapter serverless <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">api/index.cjs</code>.
+            Buat, cari, perbarui, dan hapus catatan secara langsung melalui REST API <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">/notes</code> berbasis Hapi.js.
           </p>
         </div>
 

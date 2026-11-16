@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { TopBar, type WorkspaceTab } from './components/TopBar';
+import { TopBar } from './components/TopBar';
 import { NotesWorkspace } from './components/NotesWorkspace';
-import { VercelKitView } from './components/VercelKitView';
-import { DeployGuideView } from './components/DeployGuideView';
 import {
   parseTagsInput,
   validateNoteDraft,
@@ -19,7 +17,6 @@ const EMPTY_DRAFT: NoteDraft = {
 };
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<WorkspaceTab>('playground');
   const [notes, setNotes] = useState<NoteItem[]>([]);
   const [storageMode, setStorageMode] = useState<string>('memory-fallback');
   const [loading, setLoading] = useState(true);
@@ -104,7 +101,6 @@ export default function App() {
   };
 
   const handleResetToNew = () => {
-    setActiveTab('playground');
     setEditingId(null);
     setDraft(EMPTY_DRAFT);
     setValidationErrors({});
@@ -194,45 +190,35 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-      <TopBar
-        activeTab={activeTab}
-        onSelectTab={setActiveTab}
-        onNewNote={handleResetToNew}
-      />
+      <TopBar onNewNote={handleResetToNew} />
 
       <main className="flex-1 max-w-[1360px] w-full mx-auto px-4 sm:px-8 py-8">
-        {activeTab === 'playground' && (
-          <NotesWorkspace
-            notes={notes}
-            storageMode={storageMode}
-            loading={loading}
-            loadError={loadError}
-            selectedId={selectedId}
-            editingId={editingId}
-            draft={draft}
-            validationErrors={validationErrors}
-            submitting={submitting}
-            lastExchange={lastExchange}
-            onDraftChange={(next) => {
-              setDraft(next);
-              if (Object.keys(validationErrors).length > 0) {
-                setValidationErrors(validateNoteDraft(next).errors);
-              }
-            }}
-            onSubmitDraft={handleSubmitDraft}
-            onSelectNote={(note) => setSelectedId(note.id)}
-            onStartEdit={handleStartEdit}
-            onCancelEdit={handleCancelEdit}
-            onDeleteNote={handleDeleteNote}
-            onRefreshNotes={fetchNotes}
-            onInspectById={handleInspectById}
-            onResetToNew={handleResetToNew}
-          />
-        )}
-
-        {activeTab === 'files' && <VercelKitView />}
-
-        {activeTab === 'guide' && <DeployGuideView />}
+        <NotesWorkspace
+          notes={notes}
+          storageMode={storageMode}
+          loading={loading}
+          loadError={loadError}
+          selectedId={selectedId}
+          editingId={editingId}
+          draft={draft}
+          validationErrors={validationErrors}
+          submitting={submitting}
+          lastExchange={lastExchange}
+          onDraftChange={(next) => {
+            setDraft(next);
+            if (Object.keys(validationErrors).length > 0) {
+              setValidationErrors(validateNoteDraft(next).errors);
+            }
+          }}
+          onSubmitDraft={handleSubmitDraft}
+          onSelectNote={(note) => setSelectedId(note.id)}
+          onStartEdit={handleStartEdit}
+          onCancelEdit={handleCancelEdit}
+          onDeleteNote={handleDeleteNote}
+          onRefreshNotes={fetchNotes}
+          onInspectById={handleInspectById}
+          onResetToNew={handleResetToNew}
+        />
       </main>
     </div>
   );
