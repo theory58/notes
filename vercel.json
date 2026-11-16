@@ -1,0 +1,21 @@
+{
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "backend/**"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/notes",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/notes/(.*)",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index"
+    }
+  ]
+}

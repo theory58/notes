@@ -1,0 +1,6 @@
+{
+  "name": "Notes API Vercel Studio",
+  "description": "Versi siap deploy di Vercel untuk backend Hapi.js Notes App lengkap dengan API Tester interaktif.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
